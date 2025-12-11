@@ -1,4 +1,4 @@
-// ==================== 通用：画面切换 ====================
+// ==================== General: Screen Switching ====================
 const homeScreen = document.getElementById("homeScreen");
 const videoScreen = document.getElementById("videoScreen");
 const quizScreen = document.getElementById("quizScreen");
@@ -9,7 +9,7 @@ function showScreen(screen) {
   quizScreen.style.display = screen === "quiz" ? "flex" : "none";
 }
 
-// 默认显示 Home
+// Displayed by default Home
 showScreen("home");
 
 // ==================== HOME JS ====================
@@ -21,15 +21,15 @@ const videoBtn = document.getElementById("videoBtn");
 const quizBtn = document.getElementById("quizBtn");
 
 function playHomeClickAndHint(target, message) {
-  // 音效
+  // Sound
   homeClickSound.currentTime = 0;
   homeClickSound.play();
 
-  // 小动画
+  // Animation
   target.classList.add("bump");
   setTimeout(() => target.classList.remove("bump"), 160);
 
-  // 更新提示文字
+  // Update prompt text
   homeHintText.textContent = message;
   homeHintText.style.color = "#4b5563";
   setTimeout(() => {
@@ -54,7 +54,7 @@ quizBtn.addEventListener("click", () => {
 
 // ==================== VIDEO JS ====================
 
-// 两个 lesson 对应的 YouTube embed 链接
+// YouTube embed links for the two lessons
 const videoSources = [
   "https://www.youtube.com/embed/Xh7lrudBzh8?si=8MHGMkKXtkI_nG0o",
   "https://www.youtube.com/embed/0CgMtqh4AM8?si=aR8DcKgA2UNg2Y41",
@@ -67,33 +67,33 @@ const playLessonBtn = document.getElementById("playLessonBtn");
 const videoHintText = document.getElementById("videoHintText");
 const backBtn = document.getElementById("backBtn");
 
-// 切换 lesson
+// Toggle lesson
 chips.forEach((chip) => {
   chip.addEventListener("click", () => {
-    // 音效
+    // Sound
     videoClickSound.currentTime = 0;
     videoClickSound.play();
 
-    // 更新 active 样式
+    // Update active style
     chips.forEach((c) => c.classList.remove("active"));
     chip.classList.add("active");
 
-    // 切换视频
+    // Switch video
     const index = Number(chip.dataset.video);
     player.src = videoSources[index];
 
-    // 更新 hint
+    // Update hint
     videoHintText.textContent =
       "Video changed. Tap ▶ inside the player to start the song.";
   });
 });
 
-// Play Lesson 按钮（主要做反馈 + 音效）
+// Play Lesson Button (Mainly for feedback and sound effects)
 playLessonBtn.addEventListener("click", () => {
   videoClickSound.currentTime = 0;
   videoClickSound.play();
 
-  // 简单强调提示文字
+  // Simply emphasize the prompt text
   videoHintText.textContent =
     "Please tap the ▶ button inside the YouTube video to start playing.";
   videoHintText.style.color = "#4b5563";
@@ -104,7 +104,7 @@ playLessonBtn.addEventListener("click", () => {
   }, 1200);
 });
 
-// 返回 Home
+// Back Home
 backBtn.addEventListener("click", () => {
   videoClickSound.currentTime = 0;
   videoClickSound.play();
@@ -288,7 +288,7 @@ function showFinalScore() {
   nextBtn.style.display = "none";
 }
 
-// Quiz 关闭按钮 → 回到 Home
+// Quiz Closs button → Back Home
 quizCloseBtn.addEventListener("click", () => {
   showScreen("home");
 });
